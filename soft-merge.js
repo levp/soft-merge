@@ -14,34 +14,40 @@ function softMerge(targetObject, sourceObject) {
 
 	for (var i = 0; i < keyList.length; i++) {
 		var key = keyList[i];
-		var value = sourceObject[key];
+		var sourceValue = sourceObject[key];
 
 		if (!targetObject.hasOwnProperty(key)) {
 			// target object doesn't have such a key at all,
 			// so just copy the value from the source object
-			targetObject[key] = value;
+			targetObject[key] = sourceValue;
 			continue;
 		}
 
-		if (isPrimitive(value)) {
+		if (isPrimitive(sourceValue)) {
 			// the source object value is primitive, which
 			// means there's no point of any further actions
 			// besides simply overriding the target object value
-			targetObject[key] = value;
+			targetObject[key] = sourceValue;
 			continue;
 		}
 
-		var originalValue = targetObject[key];
-		if (isPrimitive(originalValue)) {
+		var targetValue = targetObject[key];
+		if (isPrimitive(targetValue)) {
 			// the target object value is primitive, so just
 			// override it with the source value
-			targetObject[key] = value;
+			targetObject[key] = sourceValue;
 			continue;
+		}
+
+		if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
+			// special case: both values are arrays
+			// push the values of the source array unto the target array
+			targetValue.push(...sourceValue);
 		}
 
 		// if this point has been reached then both 'originalValue'
 		// and 'value' are objects, requiring a recursive merger
-		softMerge(originalValue, value);
+		softMerge(targetValue, sourceValue);
 	}
 }
 
