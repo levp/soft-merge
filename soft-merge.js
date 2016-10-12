@@ -10,14 +10,17 @@ module.exports = softMerge;
  * @param sourceObject {object} The object from which properties will be read.
  */
 function softMerge(targetObject, sourceObject) {
-	Object.keys(sourceObject).forEach(function (key) {
+	const keyList = Object.keys(sourceObject);
+
+	for (var i = 0; i < keyList.length; i++) {
+		var key = keyList[i];
 		var value = sourceObject[key];
 
 		if (!targetObject.hasOwnProperty(key)) {
 			// target object doesn't have such a key at all,
 			// so just copy the value from the source object
 			targetObject[key] = value;
-			return;
+			continue;
 		}
 
 		if (isPrimitive(value)) {
@@ -25,7 +28,7 @@ function softMerge(targetObject, sourceObject) {
 			// means there's no point of any further actions
 			// besides simply overriding the target object value
 			targetObject[key] = value;
-			return;
+			continue;
 		}
 
 		var originalValue = targetObject[key];
@@ -33,13 +36,13 @@ function softMerge(targetObject, sourceObject) {
 			// the target object value is primitive, so just
 			// override it with the source value
 			targetObject[key] = value;
-			return;
+			continue;
 		}
 
 		// if this point has been reached then both 'originalValue'
 		// and 'value' are objects, requiring a recursive merger
 		softMerge(originalValue, value);
-	});
+	}
 }
 
 /**
