@@ -42,7 +42,8 @@ function softMerge(targetObject, sourceObject) {
 		if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
 			// special case: both values are arrays
 			// push the values of the source array unto the target array
-			targetValue.push(...sourceValue);
+			Array.prototype.push.apply(targetValue, sourceValue);
+			continue;
 		}
 
 		// if this point has been reached then both 'originalValue'
