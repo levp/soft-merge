@@ -1,17 +1,27 @@
 {
 	"name": "soft-merge",
 	"version": "0.1.0",
-	"description": "",
 	"bin": "./soft-merge.js",
+	"description": "Merges objects in an intuitive way. Useful for creating configuration objects.",
+	"author": "Levi Perelman",
+	"license": "ISC",
+	"scripts": {
+		"test": "mocha test -u qunit"
+	},
+	"homepage": "https://github.com/levp/soft-merge#readme",
+	"devDependencies": {
+		"chai": "^3.5.0",
+		"mocha": "^3.1.2"
+	},
+	"bugs": {
+		"url": "https://github.com/levp/soft-merge/issues"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/levp/soft-merge.git"
 	},
-	"keywords": ["utility", "configuration"],
-	"author": "Levi Perelman",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/levp/soft-merge/issues"
-	},
-	"homepage": "https://github.com/levp/soft-merge#readme"
+	"keywords": [
+		"utility",
+		"configuration"
+	]
 }
