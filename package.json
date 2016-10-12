@@ -1,0 +1,17 @@
+{
+	"name": "soft-merge",
+	"version": "0.1.0",
+	"description": "",
+	"bin": "./soft-merge.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/levp/soft-merge.git"
+	},
+	"keywords": ["utility", "configuration"],
+	"author": "Levi Perelman",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/levp/soft-merge/issues"
+	},
+	"homepage": "https://github.com/levp/soft-merge#readme"
+}
