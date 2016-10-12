@@ -10,8 +10,8 @@ module.exports = softMerge;
  * @param sourceObject {object} The object from which properties will be read.
  */
 function softMerge(targetObject, sourceObject) {
-	Object.keys(sourceObject).forEach(key => {
-		const value = sourceObject[key];
+	Object.keys(sourceObject).forEach(function (key) {
+		var value = sourceObject[key];
 
 		if (!targetObject.hasOwnProperty(key)) {
 			// target object doesn't have such a key at all,
@@ -28,7 +28,7 @@ function softMerge(targetObject, sourceObject) {
 			return;
 		}
 
-		const originalValue = targetObject[key];
+		var originalValue = targetObject[key];
 		if (isPrimitive(originalValue)) {
 			// the target object value is primitive, so just
 			// override it with the source value
@@ -60,6 +60,6 @@ function isPrimitive(value) {
 		// them would be caught anyway in the next check
 		// (except document.all, but that's just silly)
 	}
-	const type = typeof value;
+	var type = typeof value;
 	return type === 'number' || type === 'boolean' || type === 'string';
 }
